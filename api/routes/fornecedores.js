@@ -13,4 +13,7 @@ router.delete('/:id', controller.deletar)
 
 router.patch('/:id', controller.atualizar)
 
+const produtosRouter = require('./produtos')
+router.use('/:idFornecedor/produtos', produtosRouter)
+
 module.exports = router

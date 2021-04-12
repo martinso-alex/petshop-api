@@ -1,6 +1,15 @@
-const fornecedoresTable = require('./tables/fornecedores')
+const tables = {
+  'fornecedores': require('./tables/fornecedores'),
+  'produtos': require('./tables/produtos')
+}
 
-fornecedoresTable
-  .sync()
-  .then(() => console.log('tabela criada com sucesso'))
-  .catch(console.log())
+function createTables() {
+  Object.keys(tables).forEach((i) => {
+    tables[i]
+      .sync()
+      .then(() => console.log(`tabela ${i} criada com sucesso`))
+      .catch(console.log())
+  })
+}
+
+createTables()

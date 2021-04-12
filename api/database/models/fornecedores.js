@@ -1,13 +1,17 @@
 const table = require('../tables/fornecedores')
 
-exports.listar = () => table.findAll()
+class FornecedoresModel {
+  listar = () => table.findAll()
 
-exports.criar = (fornecedor) => table.create(fornecedor)
+  buscarPorId = (id) => table.findByPk(id)
 
-exports.buscarPorId = (id) => table.findByPk(id)
+  criar = (fornecedor) => table.create(fornecedor)
 
-exports.deletar = (id) => table.destroy({where: {id: id}})
+  deletar = (id) => table.destroy({where: {id: id}})
 
-exports.atualizar = (fornecedor, id) =>
-  table.update(fornecedor, {where: {id:id}})
-    .then(() => table.findByPk(id))
+  atualizar = (fornecedor, id) =>
+    table.update(fornecedor, {where: {id:id}})
+      .then(() => table.findByPk(id))
+}
+
+module.exports = new FornecedoresModel()
